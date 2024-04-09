@@ -1,5 +1,5 @@
 import { getProducts } from "@/apis";
-import { ProductList } from "@/components";
+import { Header, ProductList } from "@/components";
 import styles from "./page.module.scss";
 
 export default async function Home() {
@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <main className={styles.main}>
-      <h1>Hello GymBeam!</h1>
+      <Header />
       <ProductList products={products} />
     </main>
   );
