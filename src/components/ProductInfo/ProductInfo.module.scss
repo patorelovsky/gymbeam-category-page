@@ -1,3 +1,20 @@
 .productInfo {
-    display: flex;
+  .thumbnail {
+    height: 20rem;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .info {
+    padding-top: 1rem;
+
+    .name {
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+  }
 }
