@@ -1,6 +1,8 @@
-import { Response } from "@/types";
+import { GetProductsResponse } from "@/types";
 
-export async function getProducts(categoryId?: string): Promise<Response> {
+export async function getProducts(
+  categoryId?: string
+): Promise<GetProductsResponse> {
   const res = await fetch(
     `${process.env.API_ENDPOINT}?category_ids[]=${categoryId}`
   );
