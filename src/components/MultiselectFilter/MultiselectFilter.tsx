@@ -8,7 +8,8 @@ type Props = {
 export default function MultiselectFilter({ filter }: Props) {
   return (
     <div className={styles.multiselectFilter}>
-      <h3>{filter.global_name}</h3>
+      <h3>{filter.name}</h3>
+      <div>{filter.options.map((option) => option.name)}</div>
     </div>
   );
 }

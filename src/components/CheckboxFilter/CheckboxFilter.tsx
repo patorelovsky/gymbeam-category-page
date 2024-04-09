@@ -8,7 +8,7 @@ type Props = {
 export default function CheckboxFilter({ filter }: Props) {
   return (
     <div className={styles.checkboxFilter}>
-      <h3>{filter.global_name}</h3>
+      <h3>{filter.name}</h3>
     </div>
   );
 }
