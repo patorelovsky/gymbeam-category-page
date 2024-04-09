@@ -17,4 +17,10 @@
       font-size: 1.4rem;
     }
   }
+
+  &:hover {
+    .name {
+      text-decoration: underline;
+    }
+  }
 }

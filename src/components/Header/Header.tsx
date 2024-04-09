@@ -6,7 +6,7 @@ import styles from "./Header.module.scss";
 export default function Header() {
   return (
     <header className={styles.header}>
-      <Link href="/">
+      <Link href="#">
         <Image
           className={styles.logo}
           src="/logo.webp"

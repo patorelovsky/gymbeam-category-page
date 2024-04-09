@@ -1,5 +1,6 @@
 import { Product } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 import { Rating } from "../Rating";
 import styles from "./ProductInfo.module.scss";
 
@@ -9,7 +10,7 @@ type Props = {
 
 export default function ProductInfo({ product }: Props) {
   return (
-    <div className={styles.productInfo}>
+    <Link href="#" className={styles.productInfo}>
       <div className={styles.thumbnail}>
         <Image
           src={product.thumbnail}
@@ -27,6 +28,6 @@ export default function ProductInfo({ product }: Props) {
         />
         <p>{product.formatted_price}</p>
       </div>
-    </div>
+    </Link>
   );
 }
