@@ -6,7 +6,9 @@ type Response = {
   meta: unknown;
 };
 
-export async function getProducts(categoryId: string): Promise<Product[]> {
+export async function getProducts(
+  categoryId: string | undefined
+): Promise<Product[]> {
   const res = await fetch(
     `${process.env.API_ENDPOINT}?category_ids[]=${categoryId}`
   );
