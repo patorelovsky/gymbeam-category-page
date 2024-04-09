@@ -49,3 +49,11 @@ The objective of this project is to create a React component for the GymBeam Cat
 5. To build the project for production:
    - Run `npm run build` to generate a production build.
    - Deploy the build artifacts to your hosting environment.
+
+## .env.local example
+`
+API_ENDPOINT=https://gymbeam.sk/rest/V1/gb/catalog/products
+SPORTS_NUTRITION_CATEGORY_ID=2416
+NEXT_IMAGES_HOST_NAME=gymbeam.sk
+NEXT_IMAGES_PATH_NAME=/media/**
+`
