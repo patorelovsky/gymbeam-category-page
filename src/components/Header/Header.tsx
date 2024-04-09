@@ -5,7 +5,7 @@ import styles from "./Header.module.scss";
 
 export default function Header() {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <Link href="/">
         <Image
           className={styles.logo}
@@ -21,6 +21,6 @@ export default function Header() {
           <FaShoppingCart />
         </div>
       </div>
-    </div>
+    </header>
   );
 }
