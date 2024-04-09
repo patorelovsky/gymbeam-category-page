@@ -1,4 +1,4 @@
-import { Product } from "@/types";
+import type { Product } from "@/types";
 import { ProductInfo } from "../ProductInfo";
 import styles from "./ProductList.module.scss";
 

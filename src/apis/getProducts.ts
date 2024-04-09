@@ -1,4 +1,4 @@
-import { GetProductsResponse } from "@/types";
+import type { GetProductsResponse } from "@/types";
 
 export async function getProducts(
   categoryId?: string
