@@ -1,14 +1,6 @@
-import { Product } from "@/types";
+import { Response } from "@/types";
 
-type Response = {
-  items: Product[];
-  filters: unknown;
-  meta: unknown;
-};
-
-export async function getProducts(
-  categoryId: string | undefined
-): Promise<Product[]> {
+export async function getProducts(categoryId?: string): Promise<Response> {
   const res = await fetch(
     `${process.env.API_ENDPOINT}?category_ids[]=${categoryId}`
   );
@@ -17,6 +9,5 @@ export async function getProducts(
     throw new Error("Failed to fetch products");
   }
 
-  const { items } = (await res.json()) as Response;
-  return items;
+  return res.json();
 }
