@@ -33,7 +33,6 @@ export default function FilterForm({ filters }: Props) {
 
   return (
     <div className={styles.filterForm}>
-      <h2 className={styles.heading}>Filters</h2>
       <form className={styles.filters}>
         {multiselect?.map((filter) => (
           <MultiselectFilter key={filter.code} filter={filter} />

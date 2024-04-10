@@ -1,24 +1,36 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { IoIosClose } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
 import styles from "./Modal.module.scss";
 
 type Props = {
+  title: string;
   show: boolean;
   showQueryParamName: string;
   children: ReactNode;
 };
 
-export default function Modal({ show, showQueryParamName, children }: Props) {
+export default function Modal({
+  title,
+  show,
+  showQueryParamName,
+  children,
+}: Props) {
   return (
     show && (
       <div className={styles.overlay}>
-        <div className={styles.toolbar}>
-          <Link className={styles.close} href={`?${showQueryParamName}=false`}>
-            <IoIosClose />
-          </Link>
+        <div className={styles.content}>
+          <div className={styles.toolbar}>
+            <h2 className={styles.title}>{title}</h2>
+            <Link
+              className={styles.close}
+              href={`?${showQueryParamName}=false`}
+            >
+              <IoMdClose />
+            </Link>
+          </div>
+          {children}
         </div>
-        <div className={styles.content}>{children}</div>
       </div>
     )
   );

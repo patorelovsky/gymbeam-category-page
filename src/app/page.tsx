@@ -27,7 +27,7 @@ export default async function Home({ searchParams }: Props) {
         </div>
         <ProductList products={items} />
       </main>
-      <Modal show={showDialog} showQueryParamName="showdialog">
+      <Modal title="Filters" show={showDialog} showQueryParamName="showdialog">
         <FilterForm filters={filters} />
       </Modal>
     </>
