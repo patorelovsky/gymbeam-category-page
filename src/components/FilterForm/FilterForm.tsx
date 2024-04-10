@@ -46,6 +46,14 @@ export default function FilterForm({ filters }: Props) {
         {range?.map((filter) => (
           <RangeFilter key={filter.code} filter={filter} />
         ))}
+        <footer className={styles.footer}>
+          <button className={`${styles.button} ${styles.reset}`} type="reset">
+            Reset filters
+          </button>
+          <button className={`${styles.button} ${styles.submit}`} type="submit">
+            Apply filters
+          </button>
+        </footer>
       </form>
     </div>
   );

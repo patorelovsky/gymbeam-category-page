@@ -1,2 +1,21 @@
+@import "/src/styles/variables";
+
 .filterForm {
+    .footer {
+        display: flex;
+        gap: $gutter-small;
+        padding-top: $gutter-small;
+    }
+    .button {
+        border-radius: $borderRadius;
+        padding: $gutter-small $gutter-medium;
+        border: none;
+    }
+    .submit {
+        background-color: #000;
+        color: #fff;
+    }
+    .reset {
+        margin-left: auto;
+    }
 }
