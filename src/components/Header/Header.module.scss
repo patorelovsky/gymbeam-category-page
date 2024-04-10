@@ -1,8 +1,10 @@
+@import "/src/styles/variables";
+
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: $gutter-small $gutter-medium;
   color: #fff;
   border-bottom: 1px solid rgb(204, 204, 204);
 
@@ -20,7 +22,7 @@
 
     .action {
       cursor: pointer;
-      font-size: 2.5rem;
+      font-size: $fontSize-large;
     }
   }
 }

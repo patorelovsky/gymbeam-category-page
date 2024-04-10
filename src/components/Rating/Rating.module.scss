@@ -1,7 +1,9 @@
+@import "/src/styles/variables";
+
 .rating {
     .stars {
-        margin-right: 1rem;
+        margin-right: $gutter-small;
         color: gold;
-        font-size: 1.3rem;
+        font-size: $fontSize-small;
     }
 }

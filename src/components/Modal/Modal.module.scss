@@ -12,16 +12,16 @@
 
   .content {
     position: absolute;
-    inset: 4rem;
-    padding: 2rem;
-    border-radius: $border-radius;
+    inset: $gutter-large;
+    padding: $gutter-medium;
+    border-radius: $borderRadius;
     border: 1px solid rgb(204, 204, 204);
     background: rgb(255, 255, 255);
     overflow: auto;
     outline: none;
 
     @media only screen and (max-width: 800px) {
-      inset: 4rem 1rem;
+      inset: $gutter-large $gutter-small;
     }
 
     .toolbar {
@@ -30,11 +30,11 @@
       justify-content: space-between;
 
       .title {
-        font-size: 1.6rem;
+        font-size: $fontSize-medium;
       }
 
       .close {
-        font-size: 2.5rem;
+        font-size: $fontSize-large;
       }
     }
   }
