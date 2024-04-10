@@ -8,7 +8,8 @@ type Props = {
 export default function RangeFilter({ filter }: Props) {
   return (
     <div className={styles.rangeFilter}>
-      <h3>{filter.name}</h3>
+      <label htmlFor={filter.code}>{filter.name}</label>
+      <input id={filter.code} type="range" />
     </div>
   );
 }

@@ -7,5 +7,7 @@ export type Filter = {
   name: string;
   options: FilterOption[];
   position: string;
-  type: "multiselect" | "checkbox" | "range";
+  type: FilterType;
 };
+
+export type FilterType = "multiselect" | "checkbox" | "range";

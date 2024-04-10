@@ -1,4 +1,5 @@
 import type { Filter } from "@/types";
+import { Fragment } from "react";
 import styles from "./MultiselectFilter.module.scss";
 
 type Props = {
@@ -8,8 +9,15 @@ type Props = {
 export default function MultiselectFilter({ filter }: Props) {
   return (
     <div className={styles.multiselectFilter}>
-      <h3>{filter.name}</h3>
-      <div>{filter.options.map((option) => option.name)}</div>
+      <fieldset>
+        <legend>{filter.name}</legend>
+        {filter.options.map(({ name, value }) => (
+          <Fragment key={name}>
+            <label htmlFor={name}>{name}</label>
+            <input type="checkbox" name={name} id={name} value={value} />
+          </Fragment>
+        ))}
+      </fieldset>
     </div>
   );
 }

@@ -8,7 +8,8 @@ type Props = {
 export default function CheckboxFilter({ filter }: Props) {
   return (
     <div className={styles.checkboxFilter}>
-      <h3>{filter.name}</h3>
+      <label htmlFor={filter.code}>{filter.name}</label>
+      <input type="checkbox" name={filter.name} id={filter.code} />
     </div>
   );
 }
