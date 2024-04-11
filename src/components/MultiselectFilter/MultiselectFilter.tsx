@@ -1,17 +1,17 @@
 import type { FilterComponentProps } from "@/types";
 import { Fragment } from "react";
-import styles from "./MultiselectFilter.module.scss";
 
 export default function MultiselectFilter({
   filter,
   filterValue,
-}: FilterComponentProps) {
+  className,
+}: FilterComponentProps & { className: string }) {
   function isChecked(value: string) {
     return filterValue?.value.includes(value);
   }
 
   return (
-    <fieldset className={styles.multiselectFilter}>
+    <fieldset className={className}>
       <legend>{filter.name}</legend>
       {filter.options.map(({ name, value }) => (
         <Fragment key={name}>
@@ -22,9 +22,7 @@ export default function MultiselectFilter({
             value={value}
             defaultChecked={isChecked(value)}
           />
-          <label className={styles.choice} htmlFor={name}>
-            {name}
-          </label>
+          <label htmlFor={name}>{name}</label>
         </Fragment>
       ))}
     </fieldset>

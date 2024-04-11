@@ -86,12 +86,13 @@ export default function FilterForm({ filters }: Props) {
       >
         {multiselect?.map(({ filter, filterValue }) => (
           <MultiselectFilter
+            className={styles.filterGroup}
             key={filter.code}
             filter={filter}
             filterValue={filterValue}
           />
         ))}
-        <fieldset>
+        <fieldset className={styles.filterGroup}>
           <legend>Filter By</legend>
           {checkbox?.map(({ filter, filterValue }) => (
             <CheckboxFilter
