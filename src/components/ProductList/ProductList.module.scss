@@ -3,7 +3,7 @@
 .productList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  gap: $gutter-small;
+  gap: $gutter-medium;
 
   @media only screen and (max-width: 800px) {
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
