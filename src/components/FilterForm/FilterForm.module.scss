@@ -26,20 +26,21 @@
 .filterGroup {
   padding: $gutter-small;
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: $gutter-small;
   max-height: 15rem;
   overflow: hidden scroll;
 
-  label {
-    background-color: $secondaryButton-bg-color;
-    color: $secondaryButton-font-color;
-    padding: $gutter-small;
-    border-radius: $borderRadius;
-  }
-
   input[type="checkbox"] {
     display: none;
+
+    + label {
+      background-color: $secondaryButton-bg-color;
+      color: $secondaryButton-font-color;
+      padding: $gutter-small;
+      border-radius: $borderRadius;
+    }
 
     &:checked + label {
       background-color: $primaryButton-bg-color;

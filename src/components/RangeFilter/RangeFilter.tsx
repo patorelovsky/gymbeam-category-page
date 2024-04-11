@@ -4,30 +4,23 @@ import styles from "./RangeFilter.module.scss";
 export default function RangeFilter({
   filter: { code, name, min, max },
   filterValue,
-}: FilterComponentProps) {
+  className,
+}: FilterComponentProps & { className: string }) {
   const [from, to] = filterValue?.value || [];
 
   return (
-    <div className={styles.rangeFilter}>
-      <fieldset>
-        <legend>{name}</legend>
-        <label htmlFor={code + "from"}>{`${name} from`}</label>
-        <input
-          type="number"
-          name={code}
-          defaultValue={from}
-          min={min}
-          max={max}
-        />
-        <label htmlFor={code + "to"}>{`${name} to`}</label>
-        <input
-          type="number"
-          name={code}
-          defaultValue={to}
-          min={min}
-          max={max}
-        />
-      </fieldset>
-    </div>
+    <fieldset className={`${styles.rangeFilter} ${className}`}>
+      <legend>{name}</legend>
+      <label htmlFor={code + "from"}>From</label>
+      <input
+        type="number"
+        name={code}
+        defaultValue={from}
+        min={min}
+        max={max}
+      />
+      <label htmlFor={code + "to"}>To</label>
+      <input type="number" name={code} defaultValue={to} min={min} max={max} />
+    </fieldset>
   );
 }

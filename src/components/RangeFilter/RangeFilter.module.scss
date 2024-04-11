@@ -1,3 +1,8 @@
+@import "../../styles/variables";
+
 .rangeFilter {
-    display: flex;
+    input[type="number"] {
+        padding: $gutter-small;
+        min-width: 10rem;
+    }
 }

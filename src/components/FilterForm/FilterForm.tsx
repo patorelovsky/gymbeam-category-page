@@ -104,6 +104,7 @@ export default function FilterForm({ filters }: Props) {
         </fieldset>
         {range?.map(({ filter, filterValue }) => (
           <RangeFilter
+            className={styles.filterGroup}
             key={filter.code}
             filter={filter}
             filterValue={filterValue}
