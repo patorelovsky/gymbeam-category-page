@@ -5,7 +5,6 @@
   .footer {
     display: flex;
     gap: $gutter-small;
-    padding-top: $gutter-small;
   }
   .button {
     border-radius: $borderRadius;
@@ -31,6 +30,7 @@
   gap: $gutter-small;
   max-height: 15rem;
   overflow: hidden scroll;
+  margin: $gutter-medium 0;
 
   input[type="checkbox"] {
     display: none;
