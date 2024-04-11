@@ -9,3 +9,16 @@
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   }
 }
+
+.noResults {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $gutter-small;
+  padding: $gutter-medium;
+
+  .icon {
+    font-size: $fontSize-large;
+  }
+}
