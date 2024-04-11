@@ -11,22 +11,22 @@ export default function MultiselectFilter({
   }
 
   return (
-    <div className={styles.multiselectFilter}>
-      <fieldset>
-        <legend>{filter.name}</legend>
-        {filter.options.map(({ name, value }) => (
-          <Fragment key={name}>
-            <label htmlFor={name}>{name}</label>
-            <input
-              type="checkbox"
-              name={filter.code}
-              id={name}
-              value={value}
-              defaultChecked={isChecked(value)}
-            />
-          </Fragment>
-        ))}
-      </fieldset>
-    </div>
+    <fieldset className={styles.multiselectFilter}>
+      <legend>{filter.name}</legend>
+      {filter.options.map(({ name, value }) => (
+        <Fragment key={name}>
+          <input
+            type="checkbox"
+            name={filter.code}
+            id={name}
+            value={value}
+            defaultChecked={isChecked(value)}
+          />
+          <label className={styles.choice} htmlFor={name}>
+            {name}
+          </label>
+        </Fragment>
+      ))}
+    </fieldset>
   );
 }
