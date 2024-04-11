@@ -1,4 +1,5 @@
 @import "/src/styles/variables";
+@import "/src/styles/colors";
 
 .main {
   padding: $gutter-large;
@@ -20,7 +21,7 @@
       border-radius: $borderRadius;
 
       &:hover {
-        background-color: rgba($color: #000000, $alpha: 0.1);
+        background-color: $hover-color;
       }
 
       .icon {
@@ -32,8 +33,12 @@
 
 .close {
   font-size: $fontSize-large;
+  padding: $gutter-small;
+  border-radius: $borderRadius;
+  display: flex;
+  align-items: center;
 
   &:hover {
-    background-color: rgba($color: #000000, $alpha: 0.1);
+    background-color: $hover-color;
   }
 }
