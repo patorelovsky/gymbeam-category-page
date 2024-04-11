@@ -1,11 +1,12 @@
 import type { GetProductsResponse } from "@/types";
 
+const API_ENDPOINT = process.env.API_ENDPOINT;
+
 export async function getProducts(
-  categoryId?: string
+  searchParams: Record<string, string>
 ): Promise<GetProductsResponse> {
-  const res = await fetch(
-    `${process.env.API_ENDPOINT}?category_ids[]=${categoryId}`
-  );
+  const url = `${API_ENDPOINT}?${new URLSearchParams(searchParams)}`;
+  const res = await fetch(url);
 
   if (!res.ok) {
     throw new Error("Failed to fetch products");
