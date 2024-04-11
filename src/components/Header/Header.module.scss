@@ -5,8 +5,7 @@
   align-items: center;
   justify-content: space-between;
   padding: $gutter-small $gutter-medium;
-  color: #fff;
-  border-bottom: 1px solid rgb(204, 204, 204);
+  border-bottom: $border;
 
   .logo {
     width: 16rem;
@@ -18,8 +17,6 @@
   }
 
   .actions {
-    color: #000;
-
     .action {
       cursor: pointer;
       font-size: $fontSize-large;

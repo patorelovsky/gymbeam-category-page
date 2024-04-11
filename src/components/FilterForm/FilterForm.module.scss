@@ -2,46 +2,48 @@
 @import "../../styles/colors";
 
 .filterForm {
-    .footer {
-        display: flex;
-        gap: $gutter-small;
-        padding-top: $gutter-small;
-    }
-    .button {
-        border-radius: $borderRadius;
-        padding: $gutter-small $gutter-medium;
-        border: none;
-    }
-    .submit {
-        background-color: #000;
-        color: #fff;
-    }
-    .reset {
-        margin-left: auto;
-    }
+  .footer {
+    display: flex;
+    gap: $gutter-small;
+    padding-top: $gutter-small;
+  }
+  .button {
+    border-radius: $borderRadius;
+    padding: $gutter-small $gutter-medium;
+    border: none;
+  }
+  .submit {
+    background-color: $primaryButton-bg-color;
+    color: $primaryButton-font-color;
+  }
+  .reset {
+    background-color: $secondaryButton-bg-color;
+    color: $secondaryButton-font-color;
+    margin-left: auto;
+  }
 }
 
 .filterGroup {
+  padding: $gutter-small;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gutter-small;
+  max-height: 15rem;
+  overflow: hidden scroll;
+
+  label {
+    background-color: $secondaryButton-bg-color;
+    color: $secondaryButton-font-color;
     padding: $gutter-small;
-    display: flex;
-    flex-wrap: wrap;
-    gap: $gutter-small;
-    max-height: 15rem;
-    overflow: hidden scroll;
-  
-    label {
-      background-color: $secondary-bg-color;
-      color: $secondary-font-color;
-      padding: $gutter-small;
-      border-radius: $borderRadius;
-    }
-  
-    input[type="checkbox"] {
-      display: none;
-  
-      &:checked + label {
-        background-color: $primary-bg-color;
-        color: $primary-font-color;
-      }
+    border-radius: $borderRadius;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+
+    &:checked + label {
+      background-color: $primaryButton-bg-color;
+      color: $primaryButton-font-color;
     }
   }
+}
