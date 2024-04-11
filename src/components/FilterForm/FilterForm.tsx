@@ -1,7 +1,16 @@
 "use client";
 
-import type { Filter, FilterComponentProps, FilterType } from "@/types";
-import { SHOW_FILTER_PARAM_NAME } from "@/utils/constants";
+import type {
+  Filter,
+  FilterComponentProps,
+  FilterType,
+  FilterValue,
+} from "@/types";
+import {
+  SHOW_FILTER_PARAM_NAME,
+  parseFilterValues,
+  stringifyFilterValues,
+} from "@/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { FormEvent } from "react";
 import { CheckboxFilter } from "../CheckboxFilter";
@@ -22,7 +31,7 @@ function sortFilters(filters: Filter[]) {
 
 function groupByFilterType(
   allFilters: Filter[],
-  filterValues: Record<string, string[]>
+  filterValues: Record<string, FilterValue>
 ) {
   return allFilters.reduce((retVal, filter) => {
     if (!retVal[filter.type]) {
@@ -39,8 +48,7 @@ export default function FilterForm({ filters }: Props) {
   sortFilters(filters);
 
   const searchParams = useSearchParams();
-  const filterValuesStr = searchParams.get("filters");
-  const filterValues = filterValuesStr ? JSON.parse(filterValuesStr) : {};
+  const filterValues = parseFilterValues(searchParams.get("filters"));
   const { multiselect, checkbox, range } = groupByFilterType(
     filters,
     filterValues
@@ -50,13 +58,7 @@ export default function FilterForm({ filters }: Props) {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const searchParamsFilters: Record<string, FormDataEntryValue[]> = {};
-
-    for (const key of formData.keys()) {
-      searchParamsFilters[key] = formData.getAll(key);
-    }
-
-    hideFilters(JSON.stringify(searchParamsFilters));
+    hideFilters(stringifyFilterValues(formData, filters));
   }
 
   function handleReset(e: FormEvent<HTMLFormElement>) {
@@ -90,7 +92,7 @@ export default function FilterForm({ filters }: Props) {
           />
         ))}
         <fieldset>
-          <legend>FILTER BY</legend>
+          <legend>Filter By</legend>
           {checkbox?.map(({ filter, filterValue }) => (
             <CheckboxFilter
               key={filter.code}

@@ -1,4 +1,5 @@
 import { FilterOption } from "./filterOption";
+import { FilterType } from "./filterType";
 
 export type Filter = {
   code: string;
@@ -8,6 +9,7 @@ export type Filter = {
   options: FilterOption[];
   position: string;
   type: FilterType;
+  max: number;
+  min: number;
 };
 
-export type FilterType = "multiselect" | "checkbox" | "range";

@@ -7,7 +7,7 @@ export default function MultiselectFilter({
   filterValue,
 }: FilterComponentProps) {
   function isChecked(value: string) {
-    return filterValue?.includes(value);
+    return filterValue?.value.includes(value);
   }
 
   return (

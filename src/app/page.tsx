@@ -1,6 +1,6 @@
 import { getAllFilters, getProducts } from "@/apis";
 import { FilterForm, Header, Modal, ProductList } from "@/components";
-import { SHOW_FILTER_PARAM_NAME } from "@/utils/constants";
+import { SHOW_FILTER_PARAM_NAME, parseFilterValues } from "@/utils";
 import Link from "next/link";
 import { FaFilter } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
@@ -14,12 +14,17 @@ export default async function Home({ searchParams }: Props) {
   const apiSearchParams = new URLSearchParams();
 
   if (searchParams?.["filters"]) {
-    const filters: Record<string, string[]> = JSON.parse(
-      searchParams?.["filters"]
+    const filters = Object.entries(
+      parseFilterValues(searchParams?.["filters"])
     );
-    for (const [key, valueArr] of Object.entries(filters)) {
-      for (const value of valueArr) {
-        apiSearchParams.append(`${key}[]`, value);
+
+    for (const [filterCode, { value: values, type }] of filters) {
+      if (type && type === "range") {
+        apiSearchParams.append(filterCode, `${values[0]},${values[1]}`);
+      } else {
+        for (const value of values) {
+          apiSearchParams.append(`${filterCode}[]`, value);
+        }
       }
     }
   }
