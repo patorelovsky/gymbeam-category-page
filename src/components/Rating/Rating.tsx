@@ -35,9 +35,13 @@ function formatReviewsCount(reviewsCount: number): string {
 export default function Rating({ ratingValue, reviewsCount }: Props) {
   return (
     <div className={styles.rating}>
-      <span className={styles.stars}>{getRatingStars(ratingValue)}</span>
-      <span>{ratingValue}%</span>
-      <span>({formatReviewsCount(reviewsCount)})</span>
+      <span data-testid="rating-stars" className={styles.stars}>
+        {getRatingStars(ratingValue)}
+      </span>
+      <span data-testid="rating-value">{ratingValue}%</span>
+      <span data-testid="rating-reviews">
+        ({formatReviewsCount(reviewsCount)})
+      </span>
     </div>
   );
 }
