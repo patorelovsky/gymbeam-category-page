@@ -7,4 +7,5 @@ export * from "./ProductInfo";
 export * from "./ProductList";
 export * from "./RangeFilter";
 export * from "./Rating";
+export * from "./Spinner";
 
