@@ -14,7 +14,7 @@ export default function MultiselectFilter({ filter }: Props) {
         {filter.options.map(({ name, value }) => (
           <Fragment key={name}>
             <label htmlFor={name}>{name}</label>
-            <input type="checkbox" name={name} id={name} value={value} />
+            <input type="checkbox" name={filter.code} id={name} value={value} />
           </Fragment>
         ))}
       </fieldset>

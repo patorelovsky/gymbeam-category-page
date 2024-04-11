@@ -1,4 +1,9 @@
+"use client";
+
 import type { Filter, FilterType } from "@/types";
+import { SHOW_FILTER_PARAM_NAME } from "@/utils/constants";
+import { useRouter, useSearchParams } from "next/navigation";
+import type { FormEvent } from "react";
 import { CheckboxFilter } from "../CheckboxFilter";
 import { MultiselectFilter } from "../MultiselectFilter";
 import { RangeFilter } from "../RangeFilter";
@@ -31,9 +36,37 @@ export default function FilterForm({ filters }: Props) {
   sortFilters(filters);
   const { multiselect, checkbox, range } = groupByFilterType(filters);
 
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const searchParamsFilters = Object.fromEntries(formData);
+    hideFilters(JSON.stringify(searchParamsFilters));
+  }
+
+  function handleReset(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    hideFilters("");
+  }
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  function hideFilters(filters: string) {
+    const newSearchParams = {
+      ...Object.fromEntries(searchParams),
+      filters,
+      [SHOW_FILTER_PARAM_NAME]: "false",
+    };
+    router.push(`?${new URLSearchParams(newSearchParams)}`);
+  }
+
   return (
     <div className={styles.filterForm}>
-      <form className={styles.filters}>
+      <form
+        className={styles.filters}
+        onSubmit={handleSubmit}
+        onReset={handleReset}
+      >
         {multiselect?.map((filter) => (
           <MultiselectFilter key={filter.code} filter={filter} />
         ))}

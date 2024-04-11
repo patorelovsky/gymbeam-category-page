@@ -1,18 +1,30 @@
-import { getProducts } from "@/apis";
+import { getAllFilters, getProducts } from "@/apis";
 import { FilterForm, Header, Modal, ProductList } from "@/components";
+import { SHOW_FILTER_PARAM_NAME } from "@/utils/constants";
 import Link from "next/link";
 import { FaFilter } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 import styles from "./page.module.scss";
 
-const CATEGORY_ID = process.env.SPORTS_NUTRITION_CATEGORY_ID;
-
 type Props = {
-  searchParams?: { showdialog?: string };
+  searchParams?: Record<string, string>;
 };
 
 export default async function Home({ searchParams }: Props) {
-  const { items, filters } = await getProducts(CATEGORY_ID);
-  const showDialog = Boolean(searchParams?.showdialog === "true");
+  const filters: Record<string, string> = {};
+
+  if (searchParams?.["filters"]) {
+    const searchParamsFilters: Record<string, string> = JSON.parse(
+      searchParams?.["filters"]
+    );
+    for (const [key, value] of Object.entries(searchParamsFilters)) {
+      filters[`${key}[]`] = value;
+    }
+  }
+
+  const { items: products } = await getProducts(filters);
+  const { filters: allFilters } = await getAllFilters();
+  const showFilterDialog = searchParams?.[SHOW_FILTER_PARAM_NAME] === "true";
 
   return (
     <>
@@ -20,15 +32,35 @@ export default async function Home({ searchParams }: Props) {
       <main className={styles.main}>
         <div className={styles.toolbar}>
           <h2 className={styles.heading}>Sports Nutrition</h2>
-          <Link className={styles.filter} href="?showdialog=true">
+          <Link
+            className={styles.filter}
+            href={`?${new URLSearchParams({
+              ...searchParams,
+              [SHOW_FILTER_PARAM_NAME]: "true",
+            })}`}
+          >
             <FaFilter className={styles.icon} />
             Show Filter
           </Link>
         </div>
-        <ProductList products={items} />
+        <ProductList products={products} />
       </main>
-      <Modal title="Filters" show={showDialog} showQueryParamName="showdialog">
-        <FilterForm filters={filters} />
+      <Modal
+        title="Filters"
+        show={showFilterDialog}
+        closeButton={
+          <Link
+            className={styles.close}
+            href={`?${new URLSearchParams({
+              ...searchParams,
+              [SHOW_FILTER_PARAM_NAME]: "false",
+            })}`}
+          >
+            <IoMdClose />
+          </Link>
+        }
+      >
+        <FilterForm filters={allFilters} />
       </Modal>
     </>
   );
