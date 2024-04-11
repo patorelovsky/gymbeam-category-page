@@ -11,18 +11,20 @@ type Props = {
 };
 
 export default async function Home({ searchParams }: Props) {
-  const filters: Record<string, string> = {};
+  const apiSearchParams = new URLSearchParams();
 
   if (searchParams?.["filters"]) {
-    const searchParamsFilters: Record<string, string> = JSON.parse(
+    const filters: Record<string, string[]> = JSON.parse(
       searchParams?.["filters"]
     );
-    for (const [key, value] of Object.entries(searchParamsFilters)) {
-      filters[`${key}[]`] = value;
+    for (const [key, valueArr] of Object.entries(filters)) {
+      for (const value of valueArr) {
+        apiSearchParams.append(`${key}[]`, value);
+      }
     }
   }
 
-  const { items: products } = await getProducts(filters);
+  const { items: products } = await getProducts(apiSearchParams);
   const { filters: allFilters } = await getAllFilters();
   const showFilterDialog = searchParams?.[SHOW_FILTER_PARAM_NAME] === "true";
 

@@ -4,10 +4,10 @@ const API_ENDPOINT = process.env.API_ENDPOINT;
 const CATEGORY_ID = process.env.SPORTS_NUTRITION_CATEGORY_ID!;
 
 export async function getProducts(
-  searchParams: Record<string, string>
+  searchParams: URLSearchParams
 ): Promise<Pick<GetProductsResponse, "items">> {
-  searchParams["category_ids[]"] = CATEGORY_ID;
-  const url = `${API_ENDPOINT}?${new URLSearchParams(searchParams)}`;
+  filterSportNutritionCategory(searchParams);
+  const url = `${API_ENDPOINT}?${searchParams}`;
   const res = await fetch(url);
 
   if (!res.ok) {
@@ -15,4 +15,8 @@ export async function getProducts(
   }
 
   return res.json();
+}
+
+function filterSportNutritionCategory(searchParams: URLSearchParams) {
+  searchParams.append("category_ids[]", CATEGORY_ID);
 }

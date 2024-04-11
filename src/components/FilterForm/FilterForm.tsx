@@ -38,8 +38,14 @@ export default function FilterForm({ filters }: Props) {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
-    const searchParamsFilters = Object.fromEntries(formData);
+    const searchParamsFilters: Record<string, FormDataEntryValue[]> = {};
+
+    for (const key of formData.keys()) {
+      searchParamsFilters[key] = formData.getAll(key);
+    }
+    
     hideFilters(JSON.stringify(searchParamsFilters));
   }
 
