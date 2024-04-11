@@ -5,15 +5,17 @@ export default function CheckboxFilter({
   filter,
   filterValue,
 }: FilterComponentProps) {
-  const checked = !!filterValue?.[0];
+  const yesOption = filter.options[0];
+  const checked = filterValue?.[0] === yesOption.value;
 
   return (
     <div className={styles.checkboxFilter}>
       <label htmlFor={filter.code}>{filter.name}</label>
       <input
         type="checkbox"
-        name={filter.name}
+        name={filter.code}
         id={filter.code}
+        value={yesOption?.value}
         defaultChecked={checked}
       />
     </div>
